@@ -49,7 +49,20 @@ describe( 'SpacemanGame Schema', () => {
         });
 
         describe('should initialize the guessed word state', () => {
-           
+            var testword = "banana"
+            var game;
+            
+            beforeEach( () => {
+                game = SpacemanGame( {word: testword } )
+            });
+
+            it( 'to be as long as the word to guess', () => {
+                game.guessed_word_state.length.should.equal( testword.length )
+            });
+
+            it( 'to be an array of empty strings', () => {
+                game.guessed_word_state.should.deep.equal( ["","","","","",""] )
+            });
         });
     });
 
