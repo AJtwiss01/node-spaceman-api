@@ -25,7 +25,7 @@ let gameSchema = new Schema( {
                 this.guessed_word_state = createEmptyGuessedWordState( value );
             }
 
-            return value;
+            return value.toUpperCase();
         },
         validate: {
             validator: function( value ) {

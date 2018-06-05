@@ -12,7 +12,7 @@ describe( 'SpacemanGame Schema', () => {
             var testword = "TESTWORD"
             var game = SpacemanGame( {word: testword})
 
-            game.word.should.equal( "nuts" )
+            game.word.should.equal( testword )
         });
 
         it( 'should require a word', () => {
@@ -39,6 +39,13 @@ describe( 'SpacemanGame Schema', () => {
                 err.should.exist;
                 err.errors.word.should.exist;
             });
+        });
+
+        it( 'should uppercase a word value', () => {
+            var testword = "apple"
+            var game = SpacemanGame( {word: testword })
+
+            game.word.should.equal( testword.toUpperCase() )
         });
 
         describe('should initialize the guessed word state', () => {
