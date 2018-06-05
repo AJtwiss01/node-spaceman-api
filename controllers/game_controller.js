@@ -14,6 +14,15 @@ exports.create_game = (req, res) => {
     });
 };
 
+exports.get_game = ( req, res ) => {
+    SpacemanGame.findById( req.params.id, ( err, gameInstance ) => {
+        if( err || !gameInstance ) {
+            res.sendStatus( 404 )
+        } else {
+            res.send( gameInstance )
+        }
+    } )
+};
 
 
 exports.get_solution = (req, res) => {

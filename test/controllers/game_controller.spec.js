@@ -117,4 +117,25 @@ describe('Spaceman Game Controller', () => {
             });
         });
     });
+
+    describe('Getting a game instance', () => {
+        beforeEach( () => {
+            mockResponse.params = {id: 5}
+        });
+
+        it('should respond with a game when it is found by id', () => {
+            var mockGame = { id: 5 }
+            SpacemanGame.findById.yields( null, mockGame )
+
+            controller.get_game( mockRequest, mockResponse )
+            mockResponse.send.calledWith( mockGame ).should.be.true
+        });
+
+        it('should respond with a 404 when a game is not found', () => {
+            SpacemanGame.findById.yields( mockError, null )
+
+            controller.get_game( mockRequest, mockResponse)
+            mockResponse.sendStatus.calledWith( 404 ).should.be.true
+        });
+    });
 });
